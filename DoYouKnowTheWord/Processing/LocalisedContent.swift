@@ -22,7 +22,7 @@ extension Locale {
     /// - Parameter code: Locale string to cross check against the available list of locales
     /// - Returns: Boolean indicating if the locale string is valid or not.
     static func isValidLocalisationString(code: String) -> Bool {
-        return Locale.availableIdentifiers.containsIgnoringCase(code)
+        return Locale.availableIdentifiers.containsIgnoringCase(Locale(identifier: code).identifier)
     }
 
     // Since a `Locale` can be initiated with any identifier, we validate if the current locale is actually valid.
@@ -32,7 +32,7 @@ extension Locale {
 }
 
 /// Represents a localised string in the project with a valid key, context and all available localisations.
-struct LocalisedItem: Codable, Identifiable {
+struct LocalisedItem: Hashable, Codable, Identifiable {
     /// Unique key for the object that is also the translation key for the object, currently cannot have emoji (it's stripped off).
     var id: String
     /// Context for translation of the string.
@@ -91,10 +91,24 @@ struct LocalisedItem: Codable, Identifiable {
 }
 
 /// Core object to handle all translation related logic for a set of translation files.
-struct LocalisedContent: Codable {
+struct LocalisedContent: Hashable, Codable {
     public private(set) var allLocalisedItems: [String: LocalisedItem]
     public private(set) var supportedLocales: Set<Locale>
     public private(set) var contextAvailable: Bool
+
+    /// Initiise a new set of localisation from the provided data.
+    /// - Parameter parsedFilesData: Mapping of filename and content.
+    static func createContent(_ parsedFilesData: [String: [String: String]]) -> LocalisedContent {
+        var content = LocalisedContent()
+        for (key, value) in parsedFilesData {
+            if key.uppercased().elementsEqual("CONTEXT") {
+                content.addContext(content: value)
+            } else if Locale.isValidLocalisationString(code: key) {
+                content.addLocalisedContent(locale: Locale(identifier: key), content: value)
+            }
+        }
+        return content
+    }
 
     /// Add localised key-value pair of translation keys and values/translations in a certain locale.
     /// - Parameters:

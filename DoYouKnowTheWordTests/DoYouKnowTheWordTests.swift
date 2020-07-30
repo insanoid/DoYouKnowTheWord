@@ -187,4 +187,18 @@ class DoYouKnowTheWordTests: XCTestCase {
         XCTAssertEqual(localisedContent.localisedMapping(locale: localeENUS), ["key_1": "english_us_value"])
         XCTAssertEqual(localisedContent.contextMapping(), ["key_1": "CTX_1", "key_2": "CTX_2", "key_3": "CTX_3", "key_4": "CTX_4"])
     }
+
+    func testParseFile() throws {
+        let filemanager = FileManager.default
+        let files = filemanager.enumerator(atPath: "/Users/karthikeyaudupa/Desktop/languageTest/")
+        var filenames: [URL] = []
+        while let file = files?.nextObject() {
+            filenames.append(URL(string: "file:///Users/karthikeyaudupa/Desktop/languageTest/\(file)")!)
+        }
+        let response = readJSONTranslationFiles(urls: filenames)
+        let item = LocalisedContent.createContent(response)
+
+        print(item)
+        assert(false)
+    }
 }
