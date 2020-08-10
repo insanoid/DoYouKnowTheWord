@@ -14,7 +14,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var window: NSWindow!
 
     func applicationDidFinishLaunching(_: Notification) {
-        let contentView = ContentView()
+        let applicationState = ApplicationState.init(content: generateSampleData())
+        let contentView = ContentView().environmentObject(applicationState)
         // Create the window and set the content view.
         window = NSWindow(
             contentRect: .zero,

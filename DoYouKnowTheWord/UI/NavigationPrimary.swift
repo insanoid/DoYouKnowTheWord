@@ -14,18 +14,18 @@ struct NavigationPrimary: View {
 
     var body: some View {
         VStack {
-            LocalisationItemList(
-                selectedLocalisedItem: $selectedLocalisedItem
-            )
+            LocalisationItemList(selectedLocalisedItem: $selectedLocalisedItem)
             .listStyle(SidebarListStyle())
         }
-        .frame(minWidth: 225, maxWidth: 300)
+        .frame(minWidth: 280, maxWidth: 300)
+    
+    .padding(0)
     }
 }
 
 struct NavigationPrimary_Previews: PreviewProvider {
     static var previews: some View {
         NavigationPrimary(selectedLocalisedItem: .constant(generateSampleData().allTranslatedContent().first!))
-            .environmentObject(AppData())
+            .environmentObject(ApplicationState.init(content: generateSampleData()))
     }
 }

@@ -8,6 +8,13 @@
 
 import Foundation
 
+// Representation of how the content can be filtered
+enum FilterType: String, CaseIterable {
+   case All = "All"
+   case Untranslated = "Untranslated"
+   case Translated = "Translated"
+}
+
 extension Array where Element == String {
     /// Compares items inside an array in a case-sensitive manner and finds a match.
     /// - Parameter element: Element to search, has to be a string
@@ -88,6 +95,27 @@ struct LocalisedItem: Hashable, Codable, Identifiable {
         context = nil
         translations = Dictionary()
     }
+    
+    func matchesFilter(searchString: String, locales: [Locale] ,filterType: FilterType = .All) -> Bool {
+        
+        let translationState = self.isFullyTranslated(allRequestedlocales: locales)
+        
+        if filterType == .Translated && translationState == false || filterType == .Untranslated && translationState == true {
+            return false
+        }
+        
+        if  searchString.isEmpty ||
+            (context != nil ? context!.localizedCaseInsensitiveContains(searchString) : false) ||
+            id.localizedCaseInsensitiveContains(searchString)  {
+            return true
+        }
+        for value in translations.values {
+            if value!.localizedCaseInsensitiveContains(searchString) {
+                return true
+            }
+        }
+        return false
+    }
 }
 
 /// Core object to handle all translation related logic for a set of translation files.
@@ -157,6 +185,18 @@ struct LocalisedContent: Hashable, Codable {
         allValidItemsArray.sort { $0.id.compare($1.id) == .orderedAscending }
         return allValidItemsArray
     }
+    
+    // Get all LocalisedItems that have at least 1 translation (sorted alphabetically)
+    func all(_ searchString: String = "", filterType: FilterType = .All) -> [LocalisedItem]? {
+        guard !allLocalisedItems.isEmpty else {
+            return nil
+        }
+        var allValidItemsArray: [LocalisedItem] = allLocalisedItems.values.filter { $0.supportedLocaleCount() > 0 && $0.matchesFilter(searchString: searchString, locales: Array(self.supportedLocales), filterType: filterType)}
+        // We are currently sorting by alphabetic order of keys, should be moved to a way where we can map it to the sequence of entry.
+        allValidItemsArray.sort { $0.id.compare($1.id) == .orderedAscending }
+        return allValidItemsArray
+    }
+    
 
     // Are all the items in the list have all supported languages translated.
     func isFullyTranslated() -> Bool {

@@ -8,10 +8,15 @@
 
 import Foundation
 
-final class AppData: ObservableObject {
-    @Published var baseFileURLs: [URL]?
-    @Published var currentLocalisedContent: LocalisedContent = generateSampleData()
-    @Published var showOnlyUntranslated = false
-    @Published var searchString: String = ""
-//    @Published var filter: FilterType = FilterType(textValue: nil)
+// A class to use an environmental object and save the current state of content in.
+final class ApplicationState: ObservableObject {
+    @Published var localisedContent: LocalisedContent
+    @Published var filter: FilterType = .All
+    @Published var filterString: String
+    
+    init(content: LocalisedContent) {
+        self.localisedContent = content
+        self.filterString = ""
+    }
 }
+

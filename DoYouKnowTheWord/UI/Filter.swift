@@ -11,53 +11,26 @@ import Foundation
 import SwiftUI
 
 struct Filter: View {
-    @EnvironmentObject private var appData: AppData
-    @Binding var searchString: String
-    @Binding var filtering: Bool
+    @EnvironmentObject private var applicationState: ApplicationState
+    @State var filtering: FilterType = .All
 
     var body: some View {
-        HStack {
-            TextField("Search", text: $searchString)
-            Spacer()
-            Toggle(isOn: $filtering) {
-                Text("Issues")
-            }
+        VStack {
+            TextField("Search", text: $applicationState.filterString)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            Picker(String(), selection: $applicationState.filter, content: {
+                ForEach(0 ..< FilterType.allCases.count) {
+                    Text(FilterType.allCases[$0].rawValue).tag(FilterType.allCases[$0])
+                }
+            }).pickerStyle(SegmentedPickerStyle())
         }.padding(.all, 5)
+        
     }
 }
 
-// struct Filter_Previews: PreviewProvider {
-//    static var previews: some View {
-//        @Binding var searchString: String = "value"
-//        @Binding var filtering: Bool = false
-//        return Filter(searchString: searchString, filtering: filtering)
-//            .environmentObject(AppData())
-//    }
-// }
-
-// enum FilterTranslated {
-//    case All
-//    case Untranslated
-//    case Translated
-// }
-//
-// struct FilterType: Hashable, Identifiable {
-//    var textValue: String?
-//    var isTranslated: FilterTranslated
-//
-//    init(textValue: String? = nil, isTranslated: FilterTranslated = .All) {
-//        self.textValue = textValue
-//        self.isTranslated = isTranslated
-//    }
-//
-//    var id: FilterType {
-//        return self
-//    }
-//
-//    init(textValue _: String? = nil) {
-//        textValue = nil
-//        isTranslated = .All
-//    }
-//
-//    static var all = FilterType()
-// }
+ struct Filter_Previews: PreviewProvider {
+    static var previews: some View {
+        return Filter()
+            .environmentObject(ApplicationState.init(content: generateSampleData()))
+    }
+ }

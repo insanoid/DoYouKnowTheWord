@@ -152,7 +152,6 @@
 				934C8E6624BF8AA900166D07 /* Info.plist */,
 				934C8E6724BF8AA900166D07 /* DoYouKnowTheWord.entitlements */,
 				934C8E6024BF8AA900166D07 /* Preview Content */,
-				9385D55A24CE40AD00297144 /* FilePanel+Extensions.swift */,
 				9385D56224CF6D3D00297144 /* AppData.swift */,
 				939FFA0024CF888700CC74B5 /* Data.swift */,
 				939FFA1424D0970C00CC74B5 /* FileHelper.swift */,
@@ -163,6 +162,7 @@
 		934C8E6024BF8AA900166D07 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				9385D55A24CE40AD00297144 /* FilePanel+Extensions.swift */,
 				9385D55724CE227F00297144 /* preview.png */,
 				934C8E6124BF8AA900166D07 /* Preview Assets.xcassets */,
 			);
@@ -579,11 +579,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DoYouKnowTheWord/DoYouKnowTheWord.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"DoYouKnowTheWord/Preview Content\"";
-				DEVELOPMENT_TEAM = UYGU8PDBPS;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DoYouKnowTheWord/Info.plist;
@@ -603,11 +603,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DoYouKnowTheWord/DoYouKnowTheWord.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"DoYouKnowTheWord/Preview Content\"";
-				DEVELOPMENT_TEAM = UYGU8PDBPS;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DoYouKnowTheWord/Info.plist;
@@ -629,7 +629,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UYGU8PDBPS;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DoYouKnowTheWordTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -651,7 +651,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UYGU8PDBPS;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DoYouKnowTheWordTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -672,7 +672,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UYGU8PDBPS;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DoYouKnowTheWordUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -692,7 +692,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UYGU8PDBPS;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DoYouKnowTheWordUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

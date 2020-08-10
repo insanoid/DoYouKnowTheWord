@@ -11,9 +11,9 @@ import Foundation
 func generateSampleData() -> LocalisedContent {
     let DE_DElocale = Locale(identifier: "de_DE")
     let EN_GBlocale = Locale(identifier: "en_GB")
-    let engbContent = ["Key 1": "EN_GB_VALUE1", "Key 2": "EN_GB_VALUE2", "Key 3": "EN_GB_VALUE3"]
+    let engbContent = ["Key 1": "EN_GB_VALUE1", "Key 2": "EN_GB_VALUE2", "Key 3": "EN_GB_VALUE3", "Key 4": "EN_GB_VALUE3", "Key 5": "EN_GB_VALUE3", "Key 6": "EN_GB_VALUE3", "Key 7": "EN_GB_VALUE3", "Key 8": "EN_GB_VALUE3", "Key 9": "EN_GB_VALUE3"]
     let dedeContent = ["Key 1": "DE_VALUE1", "Key 2": "DE_VALUE2"]
-    let context = ["Key 1": "Context #1", "Key 2": "Context #2", "Key 3": "Context #3"]
+    let context = ["Key 1": "Context #1", "Key 2": "Context #2", "Key 3": "Context #3", "Key 4": "EN_GB_VALUE3", "Key 5": "EN_GB_VALUE3", "Key 6": "EN_GB_VALUE3", "Key 7": "EN_GB_VALUE3", "Key 8": "EN_GB_VALUE3", "Key 9": "EN_GB_VALUE3"]
 
     var localisedContent = LocalisedContent()
     localisedContent.addContext(content: context)

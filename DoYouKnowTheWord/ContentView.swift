@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    // Row that is selected in the sidebar.
     @State private var selectedLocalisedItem: LocalisedItem?
-
+    @EnvironmentObject var applicationState: ApplicationState
+    
     var body: some View {
         NavigationView {
             NavigationPrimary(selectedLocalisedItem: $selectedLocalisedItem)
@@ -25,45 +27,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(AppData())
+            .environmentObject(ApplicationState.init(content: generateSampleData()))
     }
 }
-
-// struct ContentView: View {
-//    var body: some View {
-//        VStack(spacing: 16) {
-//            InputView()
-//            Spacer()
-//        }
-//        .padding(.top, 32)
-//        .padding(.bottom, 16)
-//        .frame(minWidth: 768, idealWidth: 768, maxWidth: 1024, minHeight: 648, maxHeight: 648)
-//    }
-// }
-//
-// struct InputView: View {
-//    // @Binding var fileURLs: [URL]?
-//
-//    var body: some View {
-//        VStack(spacing: 16) {
-//            HStack {
-//                Text("Select JSON Files").font(.caption)
-//                Button(action: selectFiles) {
-//                    Text("Select Files")
-//                }
-//            }
-//            // InputFileView(image: nil)
-//            Button(action: saveToFiles) { Text("Generate Files") }
-//        }
-//    }
-//
-//    private func selectFiles() {
-//        NSOpenPanel.openJSONFiles { result in
-//            if case let .success(jsonFileURLs) = result {
-//                print(jsonFileURLs)
-//            }
-//        }
-//    }
-//
-//    private func saveToFiles() {}
-// }

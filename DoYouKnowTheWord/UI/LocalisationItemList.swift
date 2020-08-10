@@ -10,20 +10,18 @@ import Foundation
 import SwiftUI
 
 struct LocalisationItemList: View {
-    @EnvironmentObject private var appData: AppData
+    @EnvironmentObject private var applicationState: ApplicationState
     @Binding var selectedLocalisedItem: LocalisedItem?
-    @State var showUntranslatedOnly = false
-    @State var searchString = ""
 
     var body: some View {
+        VStack {
+        Filter()
         List(selection: $selectedLocalisedItem) {
-            Filter(searchString: $searchString, filtering: $showUntranslatedOnly)
-            Spacer()
-            ForEach(generateSampleData().all()!) { localisedItem in
-                if (self.showUntranslatedOnly && !localisedItem.isFullyTranslated(allRequestedlocales: Array(generateSampleData().supportedLocales))) || !self.showUntranslatedOnly {
-                    LocalisedItemRow(localisedItem: localisedItem, availableLocales: Array(generateSampleData().supportedLocales)).tag(localisedItem)
-                }
+            ForEach(generateSampleData().all(applicationState.filterString, filterType: applicationState.filter)!) { localisedItem in
+                LocalisedItemRow.init(localisedItem: localisedItem, availableLocales: Array.init(self.applicationState.localisedContent.supportedLocales))
             }
+        }.padding(EdgeInsets.init(top: 10, leading: 0, bottom: 0, trailing: 0))
+        .listStyle(SidebarListStyle())
         }
     }
 }
@@ -31,6 +29,6 @@ struct LocalisationItemList: View {
 struct LocalisationItemList_Previews: PreviewProvider {
     static var previews: some View {
         LocalisationItemList(selectedLocalisedItem: .constant(generateSampleData().allTranslatedContent().first!))
-            .environmentObject(AppData())
+            .environmentObject(ApplicationState.init(content: generateSampleData()))
     }
 }

@@ -10,7 +10,7 @@ import MapKit
 import SwiftUI
 
 struct NavigationDetail: View {
-    @EnvironmentObject var appData: AppData
+     @EnvironmentObject private var applicationState: ApplicationState
     var localisedItem: LocalisedItem
     @State var tableNumber = ""
 
@@ -113,6 +113,6 @@ struct NavigationDetail: View {
 struct NavigationDetail_Previews: PreviewProvider {
     static var previews: some View {
         return NavigationDetail(localisedItem: generateSampleData().all()!.first!)
-            .environmentObject(AppData())
+            .environmentObject(ApplicationState.init(content: generateSampleData()))
     }
 }
