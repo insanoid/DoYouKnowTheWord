@@ -16,9 +16,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             NavigationPrimary(selectedLocalisedItem: $selectedLocalisedItem)
-            if selectedLocalisedItem != nil {
-                NavigationDetail(localisedItem: selectedLocalisedItem!)
-            }
+             NavigationDetail(localisedItem:  generateSampleData().all()![0])
         }
         .frame(minWidth: 700, minHeight: 300)
     }

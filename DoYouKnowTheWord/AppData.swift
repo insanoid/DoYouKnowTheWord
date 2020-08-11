@@ -18,5 +18,9 @@ final class ApplicationState: ObservableObject {
         self.localisedContent = content
         self.filterString = ""
     }
+    
+    func allLocales() -> [Locale] {
+        return Array(localisedContent.supportedLocales)
+    }
 }
 

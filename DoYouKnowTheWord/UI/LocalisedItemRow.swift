@@ -31,18 +31,8 @@ struct LocalisedItemRow: View {
             Spacer()
             if !localisedItem.isFullyTranslated(allRequestedlocales: availableLocales) {
                 Text("🔴")
-//                Image("star-filled")
-//                    .resizable()
-//                    .renderingMode(.template)
-//                    .foregroundColor(.yellow)
-//                    .frame(width: 10, height: 10)
             } else {
                 Text("🟢")
-//                Image("star-empty")
-//                    .resizable()
-//                    .renderingMode(.template)
-//                    .foregroundColor(.yellow)
-//                    .frame(width: 10, height: 10)
             }
         }.padding(.all, 5)
     }
