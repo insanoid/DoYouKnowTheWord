@@ -27,14 +27,14 @@ struct NavigationDetail: View {
             Text(localisedItem?.context ?? "...").font(.subheadline)
             Divider().padding(5)
             
-            ForEach(0..<applicationState.allLocales().count) {
-                let locale = applicationState.allLocales()[$0]
-                 return HStack(alignment: .center, spacing: 3) {
-                                    Text(locale.identifier).font(.callout)
-                                    TextField(txt: localisedItem.translation(locale: locale))
-                                }
-                
-            }
+//            ForEach(0..<applicationState.allLocales().count) {
+//                let locale = applicationState.allLocales()[$0]
+//                 return HStack(alignment: .center, spacing: 3) {
+//                                    Text(locale.identifier).font(.callout)
+//                                    TextField(txt: localisedItem.translation(locale: locale))
+//                                }
+//                
+//            }
         }.padding()
             .frame(maxWidth: 700)
     }
